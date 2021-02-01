@@ -1,2 +1,2 @@
 # ETH_DINFK
-stuff we had in the lecture
+stuff we had in lectures
