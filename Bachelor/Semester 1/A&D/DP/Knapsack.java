@@ -9,16 +9,16 @@ public class Knapsack {
     static int dp(int W, int[] values, int[] weights) {
         int[][] dp = new int[values.length + 1][W + 1];
 
-        for (int i = 1; i <= obj.length; i++) {
+        for (int i = 1; i <= weights.length; i++) {
             for (int j = 1; j <= W; j++) {
-                if (j - obj[i - 1].weight >= 0)
-                    dp[i][j] = max(dp[i - 1][j], dp[i - 1][j - weight[i - 1]] + values[i - 1]);
+                if (j - weights[i - 1] >= 0)
+                    dp[i][j] = max(dp[i - 1][j], dp[i - 1][j - weights[i - 1]] + values[i - 1]);
                 else
                     dp[i][j] = dp[i - 1][j];
             }
         }
 
-        return dp[obj.length][W];
+        return dp[weights.length][W];
     }
 
     static int max(int a, int b) {
