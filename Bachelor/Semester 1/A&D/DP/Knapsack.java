@@ -10,6 +10,7 @@ public class Knapsack {
         int[][] dp = new int[values.length + 1][W + 1];
 
         for (int i = 1; i <= weights.length; i++) {
+		// in case there are elements with weight zero you might need to start this loop at 0
             for (int j = 1; j <= W; j++) {
                 if (j - weights[i - 1] >= 0)
                     dp[i][j] = max(dp[i - 1][j], dp[i - 1][j - weights[i - 1]] + values[i - 1]);
