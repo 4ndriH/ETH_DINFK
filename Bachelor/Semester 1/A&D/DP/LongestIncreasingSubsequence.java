@@ -7,36 +7,31 @@ public class LongestIncreasingSubsequence {
 
     static int dp(int[] a) {
         int[] dp = new int[a.length];
-        int lenght = 0;
-		
-        for (int num : a) {
-            int i = BinarySearch(dp,0, lenght, num);
-            if (i < 0) {
-                i = -(i + 1);
-            }
-            dp[i] = num;
-            if (i == lenght) {
-                lenght++;
-            }
-        }
-	    
-        return lenght;
-    }
-
-    static int BinarySearch(int[] a, int left, int right, int search) {
-        int mid = a.length / 2;
-
-        while (left <= right) {
-            mid = (left + right) / 2;
-            if (a[mid] == search) {
-                return mid;
-            } else if (a[mid] < search) {
-                left = mid + 1;
+        int length = 1;
+    	
+        for (int i = 1; i < a.length; i++) {
+            if (a[i] < dp[0]) {
+            	dp[0] = a[i];
+            } else if (a[i] > dp[length - 1]) {
+            	dp[length++] = a[i];
             } else {
-                right = mid - 1;
+            	dp[BinarySearch(dp, -1, length - 1, a[i])] = a[i];
             }
         }
-	    
-        return - mid - 1;
+        
+        return length;
     }
+
+     static int BinarySearch(int[] a, int left, int right, int search) {
+         while (right - left > 1) {
+             int mid = left + (right - left) / 2;
+             if (a[mid] < search) {
+            	 left = mid;
+             } else {
+            	 right = mid;
+             }
+         }
+  
+         return right;
+     }
 }
