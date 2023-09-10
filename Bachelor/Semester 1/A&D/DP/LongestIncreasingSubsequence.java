@@ -5,7 +5,6 @@ public class LongestIncreasingSubsequence {
         System.out.println(dp(a));
     }
     
-    // Code from HumbleCatcher
     static int dp(int[] a) {
         int n = a.length;
         int[] dp = new int[n];
@@ -16,12 +15,12 @@ public class LongestIncreasingSubsequence {
         }
 
         for (int i = 0; i < n; i++) {
-		    int j = binarySearch(dp, a[i], 0, length);	
+	    int j = binarySearch(dp, a[i], 0, length);	
             dp[j] = a[i];
             if (j == length) {
                 length++;
             }
-		}
+	}
         
         return length;
     }
